@@ -7,7 +7,8 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 
 function App() {
-  const [cart, setCart] = useState([]); 
+  const [cart, setCart] = useState([]); // State to manage cart
+
   // Function to add products to the cart
   const addToCart = (product) => {
     setCart((prevCart) => {

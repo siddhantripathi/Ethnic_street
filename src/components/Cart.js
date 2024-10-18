@@ -1,24 +1,25 @@
 import React from 'react';
 
-function Cart({ cart, removeFromCart }) {
+function Checkout({ cart }) {
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   };
 
   return (
     <div className="container">
-      <h1>Your Cart</h1>
+      <h1>Checkout</h1>
       {cart.length > 0 ? (
         <div>
+          <h3>Order Summary</h3>
           <ul>
             {cart.map((item) => (
               <li key={item.id}>
                 {item.name} - ${item.price.toFixed(2)} x {item.quantity}
-                <button onClick={() => removeFromCart(item.id)} style={{ marginLeft: '10px', color: 'red' }}>Remove</button>
               </li>
             ))}
           </ul>
           <h3>Total: ${getTotalPrice()}</h3>
+          <button onClick={() => alert('Order placed successfully!')}>Place Order</button>
         </div>
       ) : (
         <p>Your cart is empty.</p>
@@ -27,4 +28,4 @@ function Cart({ cart, removeFromCart }) {
   );
 }
 
-export default Cart;
+export default Checkout;
