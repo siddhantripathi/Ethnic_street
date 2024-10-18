@@ -13,7 +13,7 @@ function Cart({ cart, removeFromCart }) {
           <ul>
             {cart.map((item) => (
               <li key={item.id}>
-                {item.name} - ${item.price.toFixed(5)} x {item.quantity}
+                {item.name} - ${item.price.toFixed(2)} x {item.quantity}
                 <button onClick={() => removeFromCart(item.id)} style={{ marginLeft: '10px', color: 'red' }}>Remove</button>
               </li>
             ))}

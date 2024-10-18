@@ -1,4 +1,4 @@
-import './App.css';  // Importing dark theme CSS
+import './App.css'; // Importing the dark theme CSS
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './components/Home';
@@ -7,13 +7,11 @@ import Cart from './components/Cart';
 import Checkout from './components/Checkout';
 
 function App() {
-  const [cart, setCart] = useState([]);
-
-  // Function to add product to cart
+  const [cart, setCart] = useState([]); 
+  // Function to add products to the cart
   const addToCart = (product) => {
     setCart((prevCart) => {
       const productExists = prevCart.find((item) => item.id === product.id);
-
       if (productExists) {
         return prevCart.map((item) =>
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
@@ -32,6 +30,7 @@ function App() {
   return (
     <Router>
       <div>
+        {/* Navigation Bar */}
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -41,11 +40,12 @@ function App() {
           </ul>
         </nav>
 
+        {/* Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
-          <Route path="/checkout" element={<Checkout cart={cart} />} />  {/* Passing cart to Checkout */}
+          <Route path="/checkout" element={<Checkout cart={cart} />} /> {/* Passing cart to Checkout */}
         </Routes>
       </div>
     </Router>
