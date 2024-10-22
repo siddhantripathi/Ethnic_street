@@ -8,6 +8,9 @@
 *.key
 *.crt
 
+#database
+data/
+
 # Testing outputs
 /coverage
 
