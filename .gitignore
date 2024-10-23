@@ -53,3 +53,4 @@ yarn.lock
 
 # Ignore node_modules directory and other sensitive file
 frontend/node_modules/
+backend/node_modules/
