@@ -13,6 +13,24 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS, // Your app password
   },
 });
+// Login route
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.status(200).json({ token });
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 
 // Register route
 router.post('/register', async (req, res) => {
@@ -35,7 +53,7 @@ router.post('/register', async (req, res) => {
       from: process.env.EMAIL_USER, // Sender address (your email)
       to: email, // Send to the registered email
       subject: 'Registration Confirmation',
-      text: `Hello ${username},\n\nThank you for registering at Ethnic Street!\n\nBest regards,\nEthnic Street Team`,
+      text: `Hello ${username},\n\nwassup wassup from Ethnic Street!\n\nBest regards,\nEthnic Street Team`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
