@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "concurrently": "^9.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
@@ -12,9 +11,17 @@
     "jwt-simple": "^0.5.6",
     "mongodb": "^6.10.0",
     "mongoose": "^8.7.2",
-    "nodemailer": "^6.9.15"
+    "nodemailer": "^6.9.15",
+    "stripe": "^17.5.0"
   },
   "scripts": {
-    "start": "concurrently \"cd ./frontend && npm start\" \"cd ./backend && npm start\""
+    "start": "node backend/server.js",
+    "server": "npx nodemon backend/server.js",
+    "client": "cd frontend && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "nodemon": "^3.0.0"
   }
 }

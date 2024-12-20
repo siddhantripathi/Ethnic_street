@@ -1,3 +1,4 @@
+// backend/models/productClothes.js
 const mongoose = require('mongoose');
 
 const ProductClothes = new mongoose.Schema({
@@ -9,9 +10,6 @@ const ProductClothes = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // image: {
-
-    // }
     price: {
         type: Number,
         required: true,
@@ -25,6 +23,42 @@ const ProductClothes = new mongoose.Schema({
     color: {
         type: String,
     },
+    imageUrl: {
+        type: String,
+    },
+    stock: {
+        type: Number,
+        default: 0,
+    },
+    createdBy: {
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
+            required: true
+        }
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    },
+    averageRating: {
+        type: Number,
+        default: 0
+    },
+    numberOfRatings: {
+        type: Number,
+        default: 0
+    }
+}, {
+    collection: 'clothes'
 });
 
-module.exports = mongoose.model('Clothes', ProductClothes);
+module.exports = mongoose.model('Clothes', ProductClothes, 'clothes');
