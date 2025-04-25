@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
 // Test route to verify user collection
 router.get('/users/test', async (req, res) => {
   try {
-    const users = await User.find({}).collection('users');
+    const users = await User.find({});
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching users' });

@@ -15,7 +15,7 @@
     "stripe": "^17.5.0"
   },
   "scripts": {
-    "start": "node backend/server.js",
+    "start": "concurrently \"node backend/server.js\" \"cd frontend && npm start\"",
     "server": "npx nodemon backend/server.js",
     "client": "cd frontend && npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
